@@ -1,310 +1,236 @@
-                    <!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>Dionysus - The God of Wine and Celebration</title>
-                        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
-                        <style>
-                            /* General Styles */
-                            body {
-                                font-family: 'Roboto', sans-serif;
-                                background: linear-gradient(120deg, #f3e9dd, #f7f2e7);
-                                margin: 0;
-                                padding: 0;
-                                overflow-x: hidden;
-                                transition: background-color 0.5s ease, color 0.5s ease;
-                            }
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra Aprovada</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ecf0f1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #34495e;
+            overflow-y: auto; /* Permitir rolagem vertical */
+        }
 
-                            header {
-                                text-align: center;
-                                background: linear-gradient(to right, #6a0572, #b565a7);
-                                padding: 50px 20px;
-                                color: #fff;
-                                position: relative;
-                                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-                            }
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            width: 400px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.5s;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            max-height: 90vh; /* Limitar a altura da caixa */
+            overflow-y: auto; /* Permitir rolagem dentro do container */
+        }
 
-                            h1 {
-                                font-family: 'Playfair Display', serif;
-                                font-size: 3.5em;
-                                margin: 0;
-                                color: #ffebcd;
-                                letter-spacing: 2px;
-                                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-                            }
+        .header {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #2980b9;
+            font-weight: bold;
+        }
 
-                            main {
-                                display: flex;
-                                flex-direction: column;
-                                align-items: center;
-                                padding: 20px;
-                            }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #e67e22; 
+            margin: 0 auto 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
 
-                            section {
-                                background-color: #fff;
-                                border-radius: 15px;
-                                padding: 30px;
-                                width: 85%;
-                                max-width: 800px;
-                                margin: 20px 0;
-                                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-                                transition: background-color 0.5s ease;
-                            }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
 
-                            h2 {
-                                font-family: 'Playfair Display', serif;
-                                font-size: 2.5em;
-                                color: #6a0572;
-                                margin-bottom: 15px;
-                            }
+        .avatar:hover img {
+            transform: scale(1.1);
+        }
 
-                            p {
-                                font-size: 1.2em;
-                                line-height: 1.6;
-                                color: #333;
-                            }
+        .section {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            animation: slideIn 1s ease forwards;
+            cursor: pointer; /* Muda o cursor para indicar que é clicável */
+        }
 
-                            ul {
-                                list-style-type: none;
-                                padding: 0;
-                            }
+        .section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
 
-                            li {
-                                font-size: 1.1em;
-                                color: #333;
-                                margin-bottom: 10px;
-                            }
+        .section:nth-child(2) { animation-delay: 0.4s; }
+        .section:nth-child(3) { animation-delay: 0.5s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+        .section:nth-child(5) { animation-delay: 0.7s; }
+        .section:nth-child(6) { animation-delay: 0.8s; }
+        .section:nth-child(7) { animation-delay: 0.9s; }
 
-                            .symbol {
-                                width: 120px;
-                                animation: float 4s ease-in-out infinite;
-                                margin-bottom: 20px;
-                            }
+        .label {
+            font-weight: bold;
+            color: #34495e;
+        }
 
-                            .dionysus {
-                                width: 200px;
-                                animation: hover 3s ease-in-out infinite;
-                                margin-top: 20px;
-                            }
+        .value {
+            margin-left: 10px;
+            color: #2c3e50;
+        }
 
-                            .cta-button {
-                                background-color: #6a0572;
-                                color: #fff;
-                                padding: 15px 30px;
-                                border: none;
-                                border-radius: 30px;
-                                font-size: 1.2em;
-                                cursor: pointer;
-                                margin-top: 20px;
-                                transition: background-color 0.3s ease;
-                                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-                            }
+        .icon {
+            color: #3498db; 
+            margin-right: 5px;
+            font-size: 1.5em;
+            vertical-align: middle; /* Centraliza o ícone verticalmente */
+        }
 
-                            .cta-button:hover {
-                                background-color: #b565a7;
-                                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-                            }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-                            .toggle-button {
-                                position: fixed;
-                                top: 20px;
-                                right: 20px;
-                                background-color: #6a0572;
-                                color: #fff;
-                                padding: 10px 20px;
-                                border: none;
-                                border-radius: 20px;
-                                cursor: pointer;
-                                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-                                transition: background-color 0.3s ease;
-                            }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-                            .toggle-button:hover {
-                                background-color: #b565a7;
-                            }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
 
-                            /* Quiz Styles */
-                            .quiz {
-                                text-align: left;
-                                font-size: 1.2em;
-                            }
+        .panel {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #d5f4e6;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: none; /* Inicialmente oculto */
+            transition: max-height 0.5s, opacity 0.5s;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
 
-                            .quiz-question {
-                                margin: 20px 0;
-                                padding: 20px;
-                                border: 2px solid #ddd;
-                                border-radius: 10px;
-                                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                            }
+        .panel.show {
+            display: block; /* Mostra o painel */
+            max-height: 200px; /* Altura máxima do painel */
+            opacity: 1; /* Torna visível */
+        }
 
-                            .quiz-options {
-                                display: flex;
-                                flex-direction: column;
-                                gap: 10px;
-                            }
+        .panel-item {
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: left;
+        }
 
-                            .quiz-option {
-                                background-color: #f0f0f0;
-                                border: 2px solid #ddd;
-                                border-radius: 10px;
-                                padding: 10px;
-                                cursor: pointer;
-                                transition: background-color 0.3s, border-color 0.3s;
-                                position: relative;
-                            }
+        .panel-item:last-child {
+            border-bottom: none; /* Remove a borda do último item */
+        }
+    </style>
+</head>
+<body>
 
-                            .quiz-option:hover {
-                                background-color: #e0e0e0;
-                            }
+    <div class="container" id="content">
+        <div class="header">A8 Contas | Compra Aprovada</div>
 
-                            .quiz-option.correct {
-                                background-color: #d4edda;
-                                border-color: #c3e6cb;
-                            }
+        <div class="avatar">
+            <img src="https://cdn.discordapp.com/avatars/879724516065046598/4ee6ac02436dc575168f55b93dce628e.png?size=1024" alt="Avatar do Comprador">
+        </div>
 
-                            .quiz-option.incorrect {
-                                background-color: #f8d7da;
-                                border-color: #f5c6cb;
-                            }
+        <div class="section" id="buyer-section">
+            <span class="icon"><i class='bx bxs-user'></i></span>
+            <span class="label">COMPRADOR:</span>
+            <span class="value">@Joaozx_77z</span>
+        </div>
 
-                            .quiz-option.correct::after {
-                                content: '✓';
-                                position: absolute;
-                                top: 50%;
-                                right: 10px;
-                                transform: translateY(-50%);
-                                font-size: 1.5em;
-                                color: #155724;
-                            }
+        <div class="panel" id="buyer-panel">
+            <div class="panel-item">
+                <span class="label">ID do Usuário:</span>
+                <span class="value">1243607860714410025</span>
+            </div>
+            <div class="panel-item">
+                <span class="label">Tempo no Servidor:</span>
+                <span class="value">3 horas e 45 minutos</span>
+            </div>
+        </div>
 
-                            .quiz-option.incorrect::after {
-                                content: '✗';
-                                position: absolute;
-                                top: 50%;
-                                right: 10px;
-                                transform: translateY(-50%);
-                                font-size: 1.5em;
-                                color: #721c24;
-                            }
+        <div class="section">
+            <span class="icon"><i class='bx bxs-package'></i></span>
+            <span class="label">PRODUTO(S) COMPRADO(S):</span>
+            <span class="value">1x - Cyborg V4 Full</span>
+        </div>
 
-                            .quiz-answer {
-                                display: none;
-                                margin-top: 10px;
-                                font-size: 1.1em;
-                                color: #333;
-                            }
+        <div class="section">
+            <span class="icon"><i class='bx bxs-dollar-circle'></i></span>
+            <span class="label">VALOR PAGO:</span>
+            <span class="value">R$ 30,00</span>
+        </div>
 
-                            /* Night Mode */
-                            body.night-mode {
-                                background: linear-gradient(120deg, #1c1c1c, #333333);
-                                color: #eaeaea;
-                            }
+        <div class="section">
+            <span class="icon"><i class='bx bxs-discount'></i></span>
+            <span class="label">VALOR DO DESCONTO:</span>
+            <span class="value">R$ 0,00</span>
+        </div>
 
-                            body.night-mode h1, 
-                            body.night-mode h2, 
-                            body.night-mode p, 
-                            body.night-mode li {
-                                color: #eaeaea;
-                            }
+        <div class="section">
+            <span class="icon"><i class='bx bxs-calendar'></i></span>
+            <span class="label">DATA:</span>
+            <span class="value">Monday, 4 November 2024 19:11 (10 minutes ago)</span>
+        </div>
 
-                            body.night-mode section {
-                                background-color: #262626;
-                            }
+        <div class="section">
+            <span class="icon"><i class='bx bxs-star'></i></span>
+            <span class="label">AVALIAÇÃO:</span>
+            <span class="value">5 estrelas!</span>
+        </div>
 
-                            body.night-mode .cta-button, 
-                            body.night-mode .toggle-button {
-                                background-color: #444;
-                                color: #fff;
-                            }
+        <div class="footer">
+            A8 Contas - Todos os direitos reservados
+        </div>
+    </div>
 
-                            body.night-mode .cta-button:hover, 
-                            body.night-mode .toggle-button:hover {
-                                background-color: #666;
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        <header>
-                            <h1>Dionysus - The God of Wine and Celebration</h1>
-                        </header>
+    <script>
+        // Simula o carregamento do conteúdo
+        const content = document.getElementById('content');
+        setTimeout(() => {
+            content.style.opacity = '1'; // Mostra o conteúdo
+        }, 2000);
 
-                        <main>
-                            <section class="book-page">
-                                <h2>Dionysus</h2>
-                                <ul>
-                                    <li>Dionysus, the son of Zeus and Semele, is the Greek god of wine, celebration, and fertility. He embodies the joy of life, liberation, and transformation. His festivals, known as Bacchanalia, were characterized by ecstatic dances, music, and wine.</li>
-                                    <li>Dionysus symbolizes rebirth, having been “born” twice—once from the mortal Semele and again after being saved by Zeus. He is often depicted with vines and a wine cup, representing abundance, indulgence, and fertility.</li>
-                                </ul>
-                                <img class="dionysus" src="dionysus_image.png" alt="Dionysus image">
-                            </section>
+        // Adiciona a funcionalidade de painel ao comprador
+        const buyerSection = document.getElementById('buyer-section');
+        const buyerPanel = document.getElementById('buyer-panel');
 
-                            <section class="book-page">
-                                <h2>Additional Information</h2>
-                                <ul>
-                                    <li><strong>Roman Name:</strong> Bacchus</li>
-                                    <li><strong>God or Goddess of:</strong> Dionysus</li>
-                                    <li><strong>Symbol:</strong> <img src="wine_glass_with_grapes.png" alt="Wine glass with grapes"></li>
-                                    <li><strong>Family members:</strong> Zeus and Semele</li>
-                                    <li><strong>Children:</strong> Priapus, Hymen, Comus, Antheaus, The Graces, Deonysos</li>
-                                    <li><strong>Interesting Fact:</strong> Dionysus was called Bacchus in Roman mythology.</li>
-                                </ul>
-                            </section>
+        buyerSection.addEventListener('click', () => {
+            buyerPanel.classList.toggle('show'); // Alterna a classe para mostrar/esconder o painel
+        });
+    </script>
 
-                            <!-- Quiz Section -->
-                            <section class="book-page quiz">
-                                <h2>Quiz about Dionysus</h2>
-                                <div class="quiz-question">
-                                    <p>1. What is Dionysus the god of?</p>
-                <div class="quiz-options">
-                    <div class="quiz-option" data-correct="true">Wine, celebration, and fertility</div>
-                    <div class="quiz-option">War and peace</div>
-                        <div class="quiz-option">Wisdom and strategy</div>
-                        <div class="quiz-option">Sun and music</div>
-                        </div>
-                        <div class="quiz-answer">Correct! Dionysus is the god of wine, celebration, and fertility.</div>
-                        </div>
-                        <div class="quiz-question">
-                        <p>2. Who are the parents of Dionysus?</p>
-                        <div class="quiz-options">
-                        <div class="quiz-option">Apollo and Artemis</div>
-                        <div class="quiz-option">Zeus and Hera</div>
-                        <div class="quiz-option" data-correct="true">Zeus and Semele</div>
-                        <div class="quiz-option">Poseidon and Amphitrite</div>
-                        </div>
-                        <div class="quiz-answer">Correct! Dionysus's parents are Zeus and Semele.</div>
-                        </div>
-                        <div class="quiz-question">
-                        <p>3. What symbol is commonly associated with Dionysus?</p>
-                        <div class="quiz-options">
-                        <div class="quiz-option">Lightning bolt</div>
-                        <div class="quiz-option">Olive branch</div>
-                        <div class="quiz-option" data-correct="true">Wine cup</div>
-                        <div class="quiz-option">Trident</div>
-                        </div>
-                        <div class="quiz-answer">Correct! The wine cup is a common symbol associated with Dionysus.</div>
-                        </div>
-                        </section>
-                        </main>
-
-                        <button class="toggle-button">Toggle Night Mode</button>
-
-                        <script>
-                        document.querySelectorAll('.quiz-option').forEach(option => {
-                        option.addEventListener('click', function() {
-                        const parent = this.closest('.quiz-question');
-                        parent.querySelectorAll('.quiz-option').forEach(opt => {
-                        opt.classList.remove('correct', 'incorrect');
-                        opt.classList.add(opt.dataset.correct === 'true' ? 'correct' : 'incorrect');
-                        });
-                        this.classList.add(this.dataset.correct === 'true' ? 'correct' : 'incorrect');
-                        parent.querySelector('.quiz-answer').style.display = 'block';
-                        });
-                        });
-
-                        document.querySelector('.toggle-button').addEventListener('click', function() {
-                        document.body.classList.toggle('night-mode');
-                        });
-                        </script>
-                        </body>
-                        </html>
+</body>
+</html>
